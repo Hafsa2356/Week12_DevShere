@@ -13,7 +13,10 @@ function App() {
         <Navbar />
         <main className="main-content">
          {/* TODO: Add react router dom routes here */}
-         
+         <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/projects" element={<Project />} />
+        </Routes>
         </main>
         <Footer />
       </div>

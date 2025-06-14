@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+import axios from 'axios';
 // TODO: Import axios here
 
 import moment from 'moment';
@@ -14,7 +15,21 @@ const Home = () => {
 
   // TODO: Fetch user data from GitHub API using axios and useEffect and set the user state, also handle the loading and error states
     // API: https://api.github.com/users/YOUR_USERNAME
-
+   useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await axios.get('https://api.github.com/users/Hafsa2356');
+        setUser(response.data);
+      } catch (err) {
+        setError('Failed to fetch user profile data');
+        console.error('Error fetching user data:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchUser();
+  }, []);
 
 
   if (loading) {
